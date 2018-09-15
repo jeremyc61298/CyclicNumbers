@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cyclic.in" />
+    <None Include="cyclic.out" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

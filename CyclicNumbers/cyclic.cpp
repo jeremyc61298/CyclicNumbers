@@ -30,10 +30,13 @@ void reverse(string &s)
 
 void multiply(int multiplier, int j, int multiplicand, string &ans)
 {
+	// Subtracting and adding by '0' to convert between a char and int
 	int temp = (ans[j] - '0') + (multiplier * multiplicand);
 	ans[j] = (temp % 10) + '0';
 	
 	// Add the carry to the next slot in the answer
+	// If at the end of the string, add another slot to 
+	// keep from an invalid subscript
 	if ((j + 1) > ans.size())
 	{
 		ans.push_back('0');
@@ -64,6 +67,7 @@ bool isCyclic(string cycNum)
 			}
 			else
 			{
+				// By the ones place first, then by the tens place
 				multiply(i % 10, j, cycNum[j] - '0', ans);
 				multiply(i / 10, j, cycNum[j] - '0', ans);
 			}
@@ -72,7 +76,6 @@ bool isCyclic(string cycNum)
 		if (doubleCyc.find(ans) == string::npos)
 			result = false;
 	}
-
 	return result;
 }
 
@@ -88,14 +91,12 @@ int main()
 
 	ofstream fout("cyclic.out");
 	string cycNum;
-
 	fin >> cycNum;
 
 	// "00" signals end of file 
 	while (cycNum != "00")
 	{
 		fout << cycNum << " is" << (isCyclic(cycNum) ? " " : " not ") << "cyclic";
-
 		fin >> cycNum;
 		if (cycNum != "00")
 			fout << endl;
